@@ -1,0 +1,397 @@
+================== 736 ==================
+{
+ "errors": [],
+ "shellW": 686,
+ "viewport": 714,
+ "kpiCount": 6,
+ "kpiCols": 3,
+ "kpiH": 121,
+ "kpiOverflow": [],
+ "charts": {
+  "bd-trend": {
+   "children": 1,
+   "texts": 10,
+   "w": 295,
+   "h": 186,
+   "viewBox": "0 0 295 186"
+  },
+  "bd-dist": {
+   "children": 1,
+   "texts": 15,
+   "w": 295,
+   "h": 186,
+   "viewBox": "0 0 295 186"
+  },
+  "bd-donut": {
+   "children": 1,
+   "texts": 2,
+   "w": 132,
+   "h": 132,
+   "viewBox": "0 0 132 132"
+  },
+  "bd-rank": {
+   "children": 1,
+   "texts": 12,
+   "w": 295,
+   "h": 186,
+   "viewBox": "0 0 295 186"
+  }
+ },
+ "donutSlices": 5,
+ "legendItems": 5,
+ "textOverlap": [],
+ "thead": 7,
+ "tbody": 6,
+ "tfoot": 7,
+ "outOfBounds": [],
+ "clipped": [],
+ "tableScroll": {
+  "scrollW": 650,
+  "clientW": 650
+ },
+ "legendOverflow": [],
+ "chromeRight": {
+  "w": 652,
+  "scrollW": 652,
+  "clientW": 652
+ },
+ "detailHead": {
+  "scrollW": 650,
+  "clientW": 650,
+  "h": 54
+ },
+ "filtersH": 88,
+ "scope": "ȫ���� �� �����ۼ� �� ����ά�ȣ����� �� ���ݽ�ֹ 2026-09-13 23:59",
+ "kpiValues": [
+  "92.4%",
+  "4,671",
+  "7.60 ��",
+  "94.3%",
+  "36 ��",
+  "65 ��"
+ ],
+ "kpiNames": [
+  "�����",
+  "������",
+  "�³ɽ����",
+  "��ʱ������",
+  "����ȱ������",
+  "���¿���"
+ ],
+ "chips": [
+  "�ӽ�Ŀ��",
+  "92.4% ���",
+  "92.7% ���",
+  "����Ŀ��",
+  "����ֵ",
+  "�ӽ���ֵ"
+ ],
+ "trendTitle": "�� 10 �������뽻��������",
+ "footRow": "�ϼ�|4,671|76,000|92.4%|94.3%|65|36"
+}
+================== alt ==================
+{
+ "errors": [],
+ "shellW": 686,
+ "viewport": 714,
+ "kpiCount": 6,
+ "kpiCols": 3,
+ "kpiH": 121,
+ "kpiOverflow": [],
+ "charts": {
+  "bd-trend": {
+   "children": 1,
+   "texts": 11,
+   "w": 295,
+   "h": 186,
+   "viewBox": "0 0 295 186"
+  },
+  "bd-dist": {
+   "children": 1,
+   "texts": 15,
+   "w": 295,
+   "h": 186,
+   "viewBox": "0 0 295 186"
+  },
+  "bd-donut": {
+   "children": 1,
+   "texts": 2,
+   "w": 132,
+   "h": 132,
+   "viewBox": "0 0 132 132"
+  },
+  "bd-rank": {
+   "children": 1,
+   "texts": 12,
+   "w": 295,
+   "h": 186,
+   "viewBox": "0 0 295 186"
+  }
+ },
+ "donutSlices": 5,
+ "legendItems": 5,
+ "textOverlap": [],
+ "thead": 7,
+ "tbody": 6,
+ "tfoot": 7,
+ "outOfBounds": [],
+ "clipped": [],
+ "tableScroll": {
+  "scrollW": 650,
+  "clientW": 650
+ },
+ "legendOverflow": [],
+ "chromeRight": {
+  "w": 652,
+  "scrollW": 652,
+  "clientW": 652
+ },
+ "detailHead": {
+  "scrollW": 650,
+  "clientW": 650,
+  "h": 54
+ },
+ "filtersH": 88,
+ "scope": "ȫ���� �� �����ۼ� �� ����ά�ȣ�����Ա �� ���ݽ�ֹ 2026-09-13 23:59",
+ "kpiValues": [
+  "94.3%",
+  "13,639",
+  "22.19 ��",
+  "94.7%",
+  "105 ��",
+  "190 ��"
+ ],
+ "kpiNames": [
+  "�����",
+  "������",
+  "���ɽ����",
+  "��ʱ������",
+  "����ȱ������",
+  "��������"
+ ],
+ "chips": [
+  "�ӽ�Ŀ��",
+  "94.3% ���",
+  "94.6% ���",
+  "����Ŀ��",
+  "����ֵ",
+  "�ӽ���ֵ"
+ ],
+ "trendTitle": "�� 12 ���������뽻��������",
+ "footRow": "�ϼ�|13,639|221,920|94.3%|94.7%|190|105"
+}
+iframe shot: narrow360 137730
+================== narrow360 ==================
+{
+ "errors": [],
+ "shellW": 332,
+ "viewport": 360,
+ "kpiCount": 6,
+ "kpiCols": 2,
+ "kpiH": 165,
+ "kpiOverflow": [
+  "1:bd-kpi-name:12>8",
+  "2:bd-kpi-name:12>8"
+ ],
+ "charts": {
+  "bd-trend": {
+   "children": 1,
+   "texts": 10,
+   "w": 272,
+   "h": 186,
+   "viewBox": "0 0 272 186"
+  },
+  "bd-dist": {
+   "children": 1,
+   "texts": 15,
+   "w": 272,
+   "h": 186,
+   "viewBox": "0 0 272 186"
+  },
+  "bd-donut": {
+   "children": 1,
+   "texts": 2,
+   "w": 132,
+   "h": 132,
+   "viewBox": "0 0 132 132"
+  },
+  "bd-rank": {
+   "children": 1,
+   "texts": 12,
+   "w": 272,
+   "h": 186,
+   "viewBox": "0 0 272 186"
+  }
+ },
+ "donutSlices": 5,
+ "legendItems": 5,
+ "textOverlap": [],
+ "thead": 7,
+ "tbody": 6,
+ "tfoot": 7,
+ "outOfBounds": [
+  "bd-table@32-652",
+  "THEAD@32-652",
+  "TR@32-652",
+  "TH@292-417",
+  "TH@417-504",
+  "TH@504-578",
+  "TH@578-652",
+  "TBODY@32-652",
+  "TR@32-652",
+  "TD@292-417"
+ ],
+ "clipped": [],
+ "tableScroll": {
+  "scrollW": 620,
+  "clientW": 296
+ },
+ "legendOverflow": [],
+ "chromeRight": {
+  "w": 298,
+  "scrollW": 298,
+  "clientW": 298
+ },
+ "detailHead": {
+  "scrollW": 296,
+  "clientW": 296,
+  "h": 120
+ },
+ "filtersH": 149,
+ "scope": "ȫ���� �� �����ۼ� �� ����ά�ȣ����� �� ���ݽ�ֹ 2026-09-13 23:59",
+ "kpiValues": [
+  "92.4%",
+  "4,671",
+  "7.60 ��",
+  "94.3%",
+  "36 ��",
+  "65 ��"
+ ],
+ "kpiNames": [
+  "�����",
+  "������",
+  "�³ɽ����",
+  "��ʱ������",
+  "����ȱ������",
+  "���¿���"
+ ],
+ "chips": [
+  "�ӽ�Ŀ��",
+  "92.4% ���",
+  "92.7% ���",
+  "����Ŀ��",
+  "����ֵ",
+  "�ӽ���ֵ"
+ ],
+ "trendTitle": "�� 10 �������뽻��������",
+ "footRow": "�ϼ�|4,671|76,000|92.4%|94.3%|65|36"
+}
+iframe shot: narrow320 135416
+================== narrow320 ==================
+{
+ "errors": [],
+ "shellW": 292,
+ "viewport": 320,
+ "kpiCount": 6,
+ "kpiCols": 2,
+ "kpiH": 165,
+ "kpiOverflow": [
+  "0:bd-kpi-name:12>1",
+  "1:bd-kpi-top:108>96",
+  "2:bd-kpi-top:108>96",
+  "3:bd-kpi-name:12>1",
+  "5:bd-kpi-name:12>1"
+ ],
+ "charts": {
+  "bd-trend": {
+   "children": 1,
+   "texts": 10,
+   "w": 232,
+   "h": 186,
+   "viewBox": "0 0 232 186"
+  },
+  "bd-dist": {
+   "children": 1,
+   "texts": 15,
+   "w": 232,
+   "h": 186,
+   "viewBox": "0 0 232 186"
+  },
+  "bd-donut": {
+   "children": 1,
+   "texts": 2,
+   "w": 132,
+   "h": 132,
+   "viewBox": "0 0 132 132"
+  },
+  "bd-rank": {
+   "children": 1,
+   "texts": 12,
+   "w": 232,
+   "h": 186,
+   "viewBox": "0 0 232 186"
+  }
+ },
+ "donutSlices": 5,
+ "legendItems": 5,
+ "textOverlap": [],
+ "thead": 7,
+ "tbody": 6,
+ "tfoot": 7,
+ "outOfBounds": [
+  "bd-table@32-652",
+  "THEAD@32-652",
+  "TR@32-652",
+  "TH@292-417",
+  "TH@417-504",
+  "TH@504-578",
+  "TH@578-652",
+  "TBODY@32-652",
+  "TR@32-652",
+  "TD@292-417"
+ ],
+ "clipped": [],
+ "tableScroll": {
+  "scrollW": 620,
+  "clientW": 256
+ },
+ "legendOverflow": [],
+ "chromeRight": {
+  "w": 258,
+  "scrollW": 258,
+  "clientW": 258
+ },
+ "detailHead": {
+  "scrollW": 256,
+  "clientW": 256,
+  "h": 120
+ },
+ "filtersH": 149,
+ "scope": "ȫ���� �� �����ۼ� �� ����ά�ȣ����� �� ���ݽ�ֹ 2026-09-13 23:59",
+ "kpiValues": [
+  "92.4%",
+  "4,671",
+  "7.60 ��",
+  "94.3%",
+  "36 ��",
+  "65 ��"
+ ],
+ "kpiNames": [
+  "�����",
+  "������",
+  "�³ɽ����",
+  "��ʱ������",
+  "����ȱ������",
+  "���¿���"
+ ],
+ "chips": [
+  "�ӽ�Ŀ��",
+  "92.4% ���",
+  "92.7% ���",
+  "����Ŀ��",
+  "����ֵ",
+  "�ӽ���ֵ"
+ ],
+ "trendTitle": "�� 10 �������뽻��������",
+ "footRow": "�ϼ�|4,671|76,000|92.4%|94.3%|65|36"
+}

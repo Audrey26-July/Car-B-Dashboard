@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html,body{margin:0;padding:0;background:#05070F}
+body{padding:14px}
+</style></head><body>
+<div id="bd-dashboard" class="bd-root">
+<style>
+#bd-dashboard{
+  --bd-canvas:#0B1026;
+  --bd-chrome:#0E142B;
+  --bd-surface:#141C33;
+  --bd-surface-2:#1B2540;
+  --bd-surface-3:#243052;
+  --bd-line:rgba(148,163,184,.18);
+  --bd-line-2:rgba(148,163,184,.30);
+  --bd-text:#F1F5F9;
+  --bd-text-2:#94A3B8;
+  --bd-text-3:#64748B;
+  --bd-s1:#00D3F6;
+  --bd-s2:#FE019A;
+  --bd-s3:#B891D0;
+  --bd-s4:#FEF810;
+  --bd-ok:#2FD98A;
+  --bd-warn:#FFB020;
+  --bd-risk:#FF5C5C;
+  --bd-r:14px;
+  --bd-r-sm:8px;
+  font-family:"Inter","PingFang SC","Microsoft YaHei","Segoe UI",system-ui,-apple-system,sans-serif;
+  color:var(--bd-text);
+  font-size:13px;
+  line-height:1.45;
+  letter-spacing:.01em;
+  -webkit-font-smoothing:antialiased;
+}
+#bd-dashboard *{box-sizing:border-box}
+#bd-dashboard .bd-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#bd-dashboard .bd-shell{
+  background:
+    radial-gradient(1100px 520px at 8% -12%,rgba(0,211,246,.10),transparent 62%),
+    radial-gradient(900px 460px at 96% -6%,rgba(254,1,154,.09),transparent 58%),
+    var(--bd-canvas);
+  border:1px solid var(--bd-line);
+  border-radius:16px;
+  overflow:hidden;
+}
+#bd-dashboard .bd-num{font-variant-numeric:tabular-nums}
+
+/* ---------- chrome ---------- */
+#bd-dashboard .bd-chrome{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:10px 16px;background:var(--bd-chrome);border-bottom:1px solid var(--bd-line);
+}
+#bd-dashboard .bd-brand{display:flex;align-items:center;gap:9px;flex:0 0 auto}
+#bd-dashboard .bd-mark{
+  width:26px;height:26px;border-radius:7px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#00BFFF,#00D3F6);color:#04121F;
+}
+#bd-dashboard .bd-mark svg{width:15px;height:15px;display:block}
+#bd-dashboard .bd-brand-name{font-size:13.5px;font-weight:500;white-space:nowrap}
+#bd-dashboard .bd-search{
+  flex:1 1 200px;min-width:150px;display:flex;align-items:center;gap:8px;
+  height:32px;padding:0 12px;border-radius:999px;
+  background:var(--bd-surface);border:1px solid var(--bd-line);
+}
+#bd-dashboard .bd-search svg{width:14px;height:14px;color:var(--bd-text-3);flex:0 0 auto}
+#bd-dashboard .bd-search input{
+  flex:1;min-width:0;border:0;background:transparent;outline:none;
+  color:var(--bd-text);font:inherit;font-size:12.5px;
+}
+#bd-dashboard .bd-search input::placeholder{color:var(--bd-text-3)}
+#bd-dashboard .bd-chrome-right{display:flex;align-items:center;gap:8px;margin-left:auto;flex:0 0 auto}
+#bd-dashboard .bd-fresh{
+  display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;
+  background:rgba(47,217,138,.10);border:1px solid rgba(47,217,138,.28);
+  color:#8DE8BC;font-size:11.5px;white-space:nowrap;
+}
+#bd-dashboard .bd-fresh i{width:6px;height:6px;border-radius:50%;background:var(--bd-ok);display:block}
+#bd-dashboard .bd-ibtn{
+  position:relative;width:30px;height:30px;display:grid;place-items:center;
+  border-radius:9px;background:var(--bd-surface);border:1px solid var(--bd-line);
+  color:var(--bd-text-2);cursor:pointer;padding:0;
+}
+#bd-dashboard .bd-ibtn:hover{color:var(--bd-text);border-color:var(--bd-line-2)}
+#bd-dashboard .bd-ibtn svg{width:15px;height:15px}
+#bd-dashboard .bd-dot{
+  position:absolute;top:5px;right:5px;width:6px;height:6px;border-radius:50%;
+  background:var(--bd-s2);border:1.5px solid var(--bd-chrome);
+}
+#bd-dashboard .bd-account{
+  display:flex;align-items:center;gap:8px;height:30px;padding:0 10px 0 6px;border-radius:999px;
+  background:var(--bd-surface);border:1px solid var(--bd-line);color:var(--bd-text);cursor:pointer;
+}
+#bd-dashboard .bd-avatar{
+  width:20px;height:20px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,#FE019A,#B891D0);color:#fff;font-size:10px;font-weight:500;
+}
+#bd-dashboard .bd-account span{font-size:12px;white-space:nowrap}
+#bd-dashboard .bd-account em{font-style:normal;color:var(--bd-text-3);font-size:11px}
+#bd-dashboard .bd-account svg{width:13px;height:13px;color:var(--bd-text-3)}
+
+/* ---------- filters ---------- */
+#bd-dashboard .bd-filters{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:10px 16px;border-bottom:1px solid var(--bd-line);background:rgba(20,28,51,.55);
+}
+#bd-dashboard .bd-flabel{font-size:11.5px;color:var(--bd-text-3);margin-right:2px}
+#bd-dashboard .bd-seg{display:inline-flex;padding:2px;border-radius:9px;background:var(--bd-surface-2);border:1px solid var(--bd-line)}
+#bd-dashboard .bd-seg button{
+  appearance:none;border:0;background:transparent;color:var(--bd-text-2);
+  font:inherit;font-size:12px;padding:4px 12px;border-radius:7px;cursor:pointer;
+}
+#bd-dashboard .bd-seg button:hover{color:var(--bd-text)}
+#bd-dashboard .bd-seg button[aria-pressed="true"]{
+  background:linear-gradient(135deg,rgba(0,211,246,.24),rgba(0,191,255,.16));
+  color:#BDF2FE;box-shadow:inset 0 0 0 1px rgba(0,211,246,.45);
+}
+#bd-dashboard .bd-pill{
+  display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:9px;
+  background:var(--bd-surface);border:1px solid var(--bd-line);color:var(--bd-text-2);font-size:12px;
+}
+#bd-dashboard .bd-pill svg{width:12px;height:12px;color:var(--bd-text-3)}
+#bd-dashboard .bd-pill b{color:var(--bd-text);font-weight:400}
+#bd-dashboard .bd-filter-tail{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--bd-text-3)}
+#bd-dashboard .bd-filter-tail a{color:var(--bd-s1);text-decoration:none}
+
+/* ---------- layout ---------- */
+#bd-dashboard .bd-main{padding:14px 16px 16px;display:flex;flex-direction:column;gap:13px}
+#bd-dashboard .bd-sechead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+#bd-dashboard .bd-sechead h2{margin:0;font-size:13px;font-weight:500}
+#bd-dashboard .bd-scope{font-size:11.5px;color:var(--bd-text-3)}
+#bd-dashboard .bd-scope b{color:var(--bd-text-2);font-weight:400}
+
+/* ---------- KPI ---------- */
+#bd-dashboard .bd-kpis{display:grid;gap:11px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:620px){#bd-dashboard .bd-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:1000px){#bd-dashboard .bd-kpis{grid-template-columns:repeat(6,minmax(0,1fr))}}
+#bd-dashboard .bd-kpi{
+  background:var(--bd-surface);border:1px solid var(--bd-line);border-radius:var(--bd-r);
+  padding:12px 13px 11px;display:flex;flex-direction:column;gap:7px;
+  box-shadow:0 1px 0 rgba(255,255,255,.03) inset,0 6px 18px rgba(0,0,0,.22);
+}
+#bd-dashboard .bd-kpi-top{display:flex;align-items:center;gap:7px}
+#bd-dashboard .bd-kpi-ic{
+  width:24px;height:24px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto;
+  background:var(--bd-surface-3);color:var(--bd-s1);
+}
+#bd-dashboard .bd-kpi-ic svg{width:14px;height:14px}
+#bd-dashboard .bd-kpi-name{font-size:12px;color:var(--bd-text-2);flex:1;min-width:0}
+#bd-dashboard .bd-chip{
+  font-size:10.5px;padding:1.5px 6px;border-radius:6px;white-space:nowrap;
+  border:1px solid transparent;
+}
+#bd-dashboard .bd-chip.ok{color:#8DE8BC;background:rgba(47,217,138,.12);border-color:rgba(47,217,138,.3)}
+#bd-dashboard .bd-chip.warn{color:#FFD18A;background:rgba(255,176,32,.12);border-color:rgba(255,176,32,.3)}
+#bd-dashboard .bd-chip.risk{color:#FFB4B4;background:rgba(255,92,92,.13);border-color:rgba(255,92,92,.32)}
+#bd-dashboard .bd-kpi-val{display:flex;align-items:baseline;gap:4px}
+#bd-dashboard .bd-kpi-val strong{font-size:28px;font-weight:500;line-height:1.05;letter-spacing:-.01em}
+#bd-dashboard .bd-kpi-val span{font-size:11.5px;color:var(--bd-text-2)}
+#bd-dashboard .bd-kpi-foot{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--bd-text-3)}
+#bd-dashboard .bd-kpi-foot b{font-weight:400;color:var(--bd-text-2)}
+#bd-dashboard .bd-up{color:var(--bd-ok)}
+#bd-dashboard .bd-down{color:var(--bd-risk)}
+#bd-dashboard .bd-bar{height:4px;border-radius:99px;background:rgba(148,163,184,.20);overflow:hidden}
+#bd-dashboard .bd-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#00BFFF,#00D3F6)}
+#bd-dashboard .bd-bar.warn i{background:linear-gradient(90deg,#FFB020,#FFD18A)}
+#bd-dashboard .bd-bar.risk i{background:linear-gradient(90deg,#FF5C5C,#FF9A9A)}
+
+/* ---------- charts ---------- */
+#bd-dashboard .bd-charts{display:grid;gap:11px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:660px){#bd-dashboard .bd-charts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+#bd-dashboard .bd-panel{
+  background:var(--bd-surface);border:1px solid var(--bd-line);border-radius:var(--bd-r);
+  padding:11px 12px 10px;display:flex;flex-direction:column;gap:6px;min-width:0;
+  box-shadow:0 6px 18px rgba(0,0,0,.22);
+}
+#bd-dashboard .bd-panel-head{display:flex;align-items:baseline;gap:8px}
+#bd-dashboard .bd-panel-head h3{margin:0;font-size:12.5px;font-weight:500}
+#bd-dashboard .bd-panel-head span{font-size:11px;color:var(--bd-text-3);margin-left:auto;white-space:nowrap}
+#bd-dashboard .bd-chart{width:100%;height:186px;min-width:0}
+#bd-dashboard .bd-chart svg{display:block;width:100%;height:100%}
+#bd-dashboard .bd-legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;color:var(--bd-text-2)}
+#bd-dashboard .bd-legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px;vertical-align:1px}
+#bd-dashboard .bd-donut{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+#bd-dashboard .bd-donut-frame{width:132px;height:132px;flex:0 0 auto}
+#bd-dashboard .bd-donut-frame svg{display:block;width:100%;height:100%}
+#bd-dashboard .bd-dl{flex:1 1 148px;min-width:132px;display:flex;flex-direction:column;gap:5px;margin:0;padding:0;list-style:none}
+#bd-dashboard .bd-dl li{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--bd-text-2)}
+#bd-dashboard .bd-dl i{width:8px;height:8px;border-radius:2px;flex:0 0 auto}
+#bd-dashboard .bd-dl em{font-style:normal;margin-left:auto;color:var(--bd-text);font-variant-numeric:tabular-nums}
+#bd-dashboard .bd-dl u{text-decoration:none;color:var(--bd-text-3);width:44px;text-align:right;font-variant-numeric:tabular-nums}
+
+/* ---------- table ---------- */
+#bd-dashboard .bd-detail{
+  background:var(--bd-surface);border:1px solid var(--bd-line);border-radius:var(--bd-r);
+  overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.22);
+}
+#bd-dashboard .bd-detail-head{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:11px 12px;border-bottom:1px solid var(--bd-line);background:rgba(27,37,64,.55);
+}
+#bd-dashboard .bd-detail-head h3{margin:0;font-size:12.5px;font-weight:500}
+#bd-dashboard .bd-detail-head .bd-hint{font-size:11px;color:var(--bd-text-3)}
+#bd-dashboard .bd-detail-head .bd-right{margin-left:auto;display:flex;gap:8px;align-items:center}
+#bd-dashboard .bd-btn{
+  height:27px;padding:0 11px;border-radius:8px;font:inherit;font-size:11.5px;cursor:pointer;
+  background:var(--bd-surface-2);border:1px solid var(--bd-line);color:var(--bd-text-2);
+}
+#bd-dashboard .bd-btn:hover{color:var(--bd-text);border-color:var(--bd-line-2)}
+#bd-dashboard .bd-btn.primary{background:rgba(0,211,246,.14);border-color:rgba(0,211,246,.42);color:#BDF2FE}
+#bd-dashboard .bd-tablewrap{overflow-x:auto}
+#bd-dashboard table.bd-table{border-collapse:separate;border-spacing:0;width:100%;min-width:660px;font-size:12px}
+#bd-dashboard .bd-table th,#bd-dashboard .bd-table td{
+  padding:8px 12px;text-align:right;white-space:nowrap;border-bottom:1px solid rgba(148,163,184,.12);
+}
+#bd-dashboard .bd-table th{
+  background:var(--bd-surface-2);color:var(--bd-text-2);font-weight:400;font-size:11.5px;
+  position:sticky;top:0;z-index:3;
+}
+#bd-dashboard .bd-table td{background:var(--bd-surface);color:var(--bd-text-2)}
+#bd-dashboard .bd-table tbody tr:nth-child(even) td{background:#18213A}
+#bd-dashboard .bd-table th:first-child,#bd-dashboard .bd-table td:first-child{
+  text-align:left;position:sticky;left:0;z-index:2;color:var(--bd-text);
+}
+#bd-dashboard .bd-table thead th:first-child{z-index:4}
+#bd-dashboard .bd-table tfoot td{
+  background:var(--bd-surface-2);color:var(--bd-text);border-bottom:0;font-variant-numeric:tabular-nums;
+}
+#bd-dashboard .bd-table td.bd-n,#bd-dashboard .bd-table tfoot td{font-variant-numeric:tabular-nums;color:var(--bd-text)}
+#bd-dashboard .bd-cellrate{display:flex;align-items:center;gap:7px;justify-content:flex-end}
+#bd-dashboard .bd-mini{width:46px;height:4px;border-radius:99px;background:rgba(148,163,184,.22);overflow:hidden;flex:0 0 auto}
+#bd-dashboard .bd-mini i{display:block;height:100%;border-radius:99px}
+#bd-dashboard .bd-flag{display:inline-flex;align-items:center;gap:4px}
+#bd-dashboard .bd-flag svg{width:11px;height:11px}
+#bd-dashboard .bd-foot{padding:9px 16px 12px;font-size:11px;color:var(--bd-text-3);display:flex;gap:14px;flex-wrap:wrap}
+</style>
+
+<div class="bd-shell">
+  <div class="bd-chrome">
+    <div class="bd-brand">
+      <span class="bd-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4-9 5 6 3-4 6 7z"/></svg>
+      </span>
+      <span class="bd-brand-name">启明智营 · 车企经营看板</span>
+    </div>
+    <label class="bd-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="bd-search-input" type="search" placeholder="搜索指标、大区、销售员或门店" aria-label="搜索指标、大区、销售员或门店">
+    </label>
+    <div class="bd-chrome-right">
+      <span class="bd-fresh"><i></i>数据截止 2026-09-13 23:59 · 周批 W37</span>
+      <button type="button" class="bd-ibtn" aria-label="消息通知，3 条未读">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M18 8a6 6 0 10-12 0c0 6-2 7-2 7h16s-2-1-2-7"/><path d="M10.5 20a2 2 0 003 0"/></svg>
+        <span class="bd-dot" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="bd-ibtn" id="bd-reset" aria-label="恢复最初状态">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+      </button>
+      <button type="button" class="bd-account">
+        <span class="bd-avatar" aria-hidden="true">王</span>
+        <span>王海 <em>· 集团管理层</em></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="bd-filters">
+    <span class="bd-flabel">时间</span>
+    <div class="bd-seg" role="group" aria-label="时间口径">
+      <button type="button" data-period="month" aria-pressed="true">本月</button>
+      <button type="button" data-period="quarter" aria-pressed="false">本季</button>
+    </div>
+    <span class="bd-flabel" style="margin-left:6px">筛选</span>
+    <span class="bd-pill">地区：<b>全部大区</b>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+    <span class="bd-pill">车系：<b>全部</b>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+    <span class="bd-pill">车价区间：<b>全部</b>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+    <span class="bd-pill">门店：<b>全部</b>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+    <div class="bd-filter-tail"><span>已选 1 个条件</span><a href="#bd-dashboard">清除全部</a></div>
+  </div>
+
+  <div class="bd-main">
+    <div class="bd-sechead">
+      <h2>关键指标</h2>
+      <span class="bd-scope" id="bd-scope" aria-live="polite">全集团 · 本月累计 · 分析维度：地区 · 11 项指标已接入</span>
+    </div>
+    <div class="bd-kpis" id="bd-kpis"></div>
+
+    <div class="bd-sechead" style="margin-top:2px">
+      <h2>经营分析</h2>
+      <span class="bd-scope">图表随上方筛选与下方分析维度联动</span>
+    </div>
+    <div class="bd-charts">
+      <section class="bd-panel">
+        <div class="bd-panel-head"><h3 id="bd-trend-title">销量与交付率趋势</h3><span id="bd-trend-unit">单位：台 / %</span></div>
+        <div class="bd-chart"><svg id="bd-trend" role="img" aria-labelledby="bd-trend-title"></svg></div>
+        <div class="bd-legend">
+          <span><i style="background:#00D3F6"></i>销量</span>
+          <span><i style="background:#FE019A"></i>即时交付率</span>
+        </div>
+      </section>
+
+      <section class="bd-panel">
+        <div class="bd-panel-head"><h3 id="bd-dist-title">成交价区间分布</h3><span>单位：台</span></div>
+        <div class="bd-chart"><svg id="bd-dist" role="img" aria-labelledby="bd-dist-title"></svg></div>
+        <div class="bd-legend">
+          <span><i style="background:#00D3F6"></i>各价格带销量</span>
+          <span><i style="background:#FE019A"></i>峰值价格带</span>
+        </div>
+      </section>
+
+      <section class="bd-panel">
+        <div class="bd-panel-head"><h3 id="bd-donut-title">成交金额占比</h3><span id="bd-donut-unit">单位：万元</span></div>
+        <div class="bd-donut">
+          <div class="bd-donut-frame"><svg id="bd-donut" role="img" aria-labelledby="bd-donut-title"></svg></div>
+          <ul class="bd-dl" id="bd-donut-legend"></ul>
+        </div>
+      </section>
+
+      <section class="bd-panel">
+        <div class="bd-panel-head"><h3 id="bd-rank-title">销量排行</h3><span>单位：台</span></div>
+        <div class="bd-chart"><svg id="bd-rank" role="img" aria-labelledby="bd-rank-title"></svg></div>
+        <div class="bd-legend">
+          <span><i style="background:#00D3F6"></i>完成率达标</span>
+          <span><i style="background:#FFB020"></i>完成率低于 90%</span>
+        </div>
+      </section>
+    </div>
+
+    <section class="bd-detail">
+      <div class="bd-detail-head">
+        <h3>多维明细</h3>
+        <span class="bd-hint">行维度</span>
+        <div class="bd-seg" role="group" aria-label="明细行维度" id="bd-dims">
+          <button type="button" data-dim="地区" aria-pressed="true">地区</button>
+          <button type="button" data-dim="销售员" aria-pressed="false">销售员</button>
+          <button type="button" data-dim="门店" aria-pressed="false">门店</button>
+          <button type="button" data-dim="车系" aria-pressed="false">车系</button>
+        </div>
+        <div class="bd-right">
+          <button type="button" class="bd-btn">列：时间（月）</button>
+          <button type="button" class="bd-btn">度量：4 项</button>
+          <button type="button" class="bd-btn primary">导出</button>
+        </div>
+      </div>
+      <div class="bd-tablewrap">
+        <table class="bd-table">
+          <caption class="bd-sr" id="bd-table-caption">按当前分析维度展开的明细数据</caption>
+          <thead><tr id="bd-thead"></tr></thead>
+          <tbody id="bd-tbody"></tbody>
+          <tfoot><tr id="bd-tfoot"></tr></tfoot>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="bd-foot">
+    <span>数据来源：DMS 订单库 · CRM 客诉工单 · TMS 发运记录</span>
+    <span>口径版本：M01–M11 v1.2 · 负责人 数据运营组</span>
+    <span>导出文件自动添加水印与数据截止时间</span>
+  </div>
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById('bd-dashboard');
+  if (!root) return;
+  var NS = 'http://www.w3.org/2000/svg';
+
+  /* ------------------------------------------------------------------ 数据层 */
+  var TOTALS = { sales: 4671, amount: 76000, complaints: 65, stockout: 36, target: 5055 };
+
+  // [名称, 销量, 单车均价(万), 即时交付率(%), 客诉率, 缺货率, 目标达成率]
+  var BASE = {
+    '地区': [
+      ['华东', 1286, 16.7, 96.4, 0.0093, 0.0039, 1.023],
+      ['华南', 968, 16.2, 92.1, 0.0186, 0.0093, 0.886],
+      ['华北', 842, 16.6, 95.2, 0.0107, 0.0048, 0.968],
+      ['华中', 635, 15.6, 94.7, 0.0110, 0.0094, 0.912],
+      ['西南', 528, 16.4, 93.5, 0.0208, 0.0133, 0.849],
+      ['东北', 412, 15.3, 91.8, 0.0194, 0.0121, 0.794]
+    ],
+    '销售员': [
+      ['李昊', 986, 16.3, 97.1, 0.0081, 0.0041, 1.030],
+      ['陈嘉', 892, 16.4, 95.6, 0.0123, 0.0056, 0.962],
+      ['周敏', 814, 17.1, 94.2, 0.0111, 0.0074, 0.921],
+      ['王倩', 758, 15.8, 93.1, 0.0158, 0.0092, 0.882],
+      ['赵鹏', 673, 15.2, 92.4, 0.0208, 0.0119, 0.901],
+      ['孙博', 548, 16.0, 91.2, 0.0201, 0.0110, 0.812]
+    ],
+    '门店': [
+      ['上海浦东店', 1142, 17.2, 96.8, 0.0096, 0.0044, 1.018],
+      ['广州天河店', 986, 16.1, 92.6, 0.0172, 0.0081, 0.894],
+      ['北京朝阳店', 872, 16.4, 95.4, 0.0103, 0.0046, 0.972],
+      ['武汉江汉店', 742, 15.7, 94.1, 0.0108, 0.0094, 0.905],
+      ['成都高新店', 528, 16.6, 93.8, 0.0208, 0.0133, 0.856],
+      ['沈阳铁西店', 401, 15.1, 91.4, 0.0200, 0.0125, 0.798]
+    ],
+    '车系': [
+      ['星越 L', 1286, 18.4, 95.2, 0.0086, 0.0054, 1.012],
+      ['星瑞', 1102, 13.2, 96.1, 0.0091, 0.0036, 1.026],
+      ['帝豪', 926, 9.8, 95.8, 0.0108, 0.0043, 0.978],
+      ['博越', 742, 14.6, 93.4, 0.0148, 0.0108, 0.918],
+      ['嘉际', 389, 17.8, 90.6, 0.0231, 0.0180, 0.842],
+      ['银河 E8', 226, 22.6, 92.9, 0.0265, 0.0133, 0.803]
+    ]
+  };
+
+  var PRICE_BINS = [['<10万', 214], ['10–15万', 586], ['15–20万', 1042], ['20–30万', 1318], ['30–45万', 892], ['>45万', 619]];
+  var WEEK_SALES = [1042, 1088, 997, 1156, 1203, 1097, 1096, 1178, 1176, 1221];
+  var WEEK_LABEL = ['W28', 'W29', 'W30', 'W31', 'W32', 'W33', 'W34', 'W35', 'W36', 'W37'];
+  var MONTH_SALES = [3980, 4210, 4460, 3870, 3210, 3620, 4050, 4280, 4510, 4348, 4620, 4671];
+  var MONTH_LABEL = ['10月', '11月', '12月', '1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月'];
+
+  var PERIODS = {
+    month: {
+      name: '本月', scope: '本月累计', factor: 1, targetFactor: 1,
+      sales: [WEEK_SALES, WEEK_LABEL], axis: '近 10 周',
+      delivery: [95.1, 95.8, 94.2, 96.0, 96.6, 95.4, 94.8, 96.2, 95.7, 96.4],
+      donut: '成交金额占比', hint: { completion: '环比 -2.1pp', sales: '同比 +12.4%', amount: '同比 +8.6%', delivery: '环比 -1.3pp', stockout: '环比 +9 次', complaints: '同比 -8.2%' }
+    },
+    quarter: {
+      name: '本季', scope: '本季累计', factor: 2.92, targetFactor: 2.86,
+      sales: [MONTH_SALES, MONTH_LABEL], axis: '近 12 个月',
+      delivery: [93.6, 93.9, 94.4, 93.1, 92.4, 92.9, 93.8, 94.1, 94.6, 93.9, 94.2, 94.3],
+      donut: '成交金额占比', hint: { completion: '环比 +1.9pp', sales: '同比 +14.6%', amount: '同比 +11.2%', delivery: '环比 +0.4pp', stockout: '环比 +22 次', complaints: '同比 -5.4%' }
+    }
+  };
+
+  function scaledRows(dim, period) {
+    var p = PERIODS[period], src = BASE[dim], rows = [], sum = { a: 0, c: 0, o: 0, t: 0 };
+    var sales = 0;
+    src.forEach(function (r) {
+      var s = Math.round(r[1] * p.factor);
+      sales += s;
+      rows.push({
+        n: r[0], s: s,
+        a: s * r[2],
+        d: Math.min(99.2, r[3] + (period === 'quarter' ? 0.4 : 0)),
+        c: s * r[4], o: s * r[5], t: s / r[6]
+      });
+    });
+    rows.forEach(function (r) {
+      sum.a += r.a; sum.c += r.c; sum.o += r.o; sum.t += r.t;
+    });
+    var exp = {
+      a: Math.round(TOTALS.amount * p.factor),
+      c: Math.round(TOTALS.complaints * p.factor),
+      o: Math.round(TOTALS.stockout * p.factor),
+      t: Math.round(TOTALS.target * p.targetFactor)
+    };
+    rows.forEach(function (r) {
+      r.s = Math.round(r.s);
+      r.a = Math.round(r.a); r.c = Math.round(r.c); r.o = Math.round(r.o); r.t = Math.round(r.t);
+    });
+    ['a', 'c', 'o', 't'].forEach(function (key) {
+      var total = rows.reduce(function (acc, r) { return acc + r[key]; }, 0);
+      var gap = exp[key] - total;
+      if (gap !== 0) {
+        var idx = 0;
+        rows.forEach(function (r, i) { if (r[key] > rows[idx][key]) idx = i; });
+        rows[idx][key] += gap;
+      }
+    });
+    rows.sort(function (x, y) { return y.s - x.s; });
+    rows.forEach(function (r) { r.rate = (r.s / r.t) * 100; });
+    return { rows: rows, sales: sales };
+  }
+
+  function kpisFor(dim, period) {
+    var d = scaledRows(dim, period), p = PERIODS[period];
+    var sales = d.sales;
+    var amount = d.rows.reduce(function (a, r) { return a + r.a; }, 0);
+    var complaints = d.rows.reduce(function (a, r) { return a + r.c; }, 0);
+    var stockout = d.rows.reduce(function (a, r) { return a + r.o; }, 0);
+    var target = d.rows.reduce(function (a, r) { return a + r.t; }, 0);
+    var delivery = d.rows.reduce(function (a, r) { return a + r.s * r.d; }, 0) / sales;
+    var goalAmount = period === 'month' ? 82000 : 234500;
+    var limitStockout = period === 'month' ? 30 : 90;
+    var limitComplaints = period === 'month' ? 60 : 180;
+    return {
+      rows: d.rows, period: p, sales: sales, amount: amount, delivery: delivery,
+      completion: sales / target * 100, complaints: complaints, stockout: stockout,
+      target: target, goalAmount: goalAmount,
+      limitStockout: limitStockout, limitComplaints: limitComplaints
+    };
+  }
+
+  /* ------------------------------------------------------------------ 工具 */
+  function fmt(n, d) {
+    return Number(n).toFixed(d === undefined ? 0 : d).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+  function yi(n) { return (n / 10000).toFixed(2) + ' 亿'; }
+  function el(tag, attrs, text) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) { if (attrs[k] !== null && attrs[k] !== undefined) e.setAttribute(k, attrs[k]); }
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+  function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+  function nf(v, d) { return v.toFixed(d === undefined ? 0 : d); }
+
+  var state = { period: 'quarter', dim: '销售员' };
+
+  /* ------------------------------------------------------------------ 图表 */
+  function drawTrend(svg) {
+    var p = PERIODS[state.period], w = svg.clientWidth || 320, h = svg.clientHeight || 186;
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    clear(svg);
+    var data = p.sales[0], labels = p.sales[1], del = p.delivery;
+    var narrow = w < 400;
+    var padL = 42, padR = narrow ? 14 : 46, padT = 22, padB = 24;
+    var plotW = Math.max(40, w - padL - padR), plotH = Math.max(40, h - padT - padB);
+    var maxV = Math.max.apply(null, data) * 1.16;
+    var x = function (i) { return padL + (data.length === 1 ? 0 : plotW * i / (data.length - 1)); };
+    var y = function (v) { return padT + plotH - plotH * v / maxV; };
+    var dmin = Math.min.apply(null, del) - 1.2, dmax = Math.max.apply(null, del) + 1.2;
+    var y2 = function (v) { return padT + plotH - plotH * (v - dmin) / (dmax - dmin); };
+
+    var g = el('g');
+    var defs = el('defs');
+    var grad = el('linearGradient', { id: 'bd-grad-trend', x1: '0', y1: '0', x2: '0', y2: '1' });
+    grad.appendChild(el('stop', { offset: '0%', 'stop-color': '#00D3F6', 'stop-opacity': '0.34' }));
+    grad.appendChild(el('stop', { offset: '100%', 'stop-color': '#00D3F6', 'stop-opacity': '0' }));
+    defs.appendChild(grad); g.appendChild(defs);
+
+    for (var t = 0; t <= 3; t++) {
+      var vy = padT + plotH * t / 3;
+      g.appendChild(el('line', { x1: padL, y1: vy, x2: padL + plotW, y2: vy, stroke: 'rgba(148,163,184,0.14)', 'stroke-width': 1 }));
+      var val = maxV * (1 - t / 3);
+      g.appendChild(el('text', { x: padL - 8, y: vy + 3.5, 'text-anchor': 'end', fill: '#64748B', 'font-size': 10.5 }, nf(val, 0)));
+    }
+
+    var area = 'M' + x(0) + ' ' + (padT + plotH);
+    data.forEach(function (v, i) { area += ' L' + nf(x(i), 1) + ' ' + nf(y(v), 1); });
+    area += ' L' + x(data.length - 1) + ' ' + (padT + plotH) + ' Z';
+    g.appendChild(el('path', { d: area, fill: 'url(#bd-grad-trend)' }));
+
+    var line = '';
+    data.forEach(function (v, i) { line += (i ? ' L' : 'M') + nf(x(i), 1) + ' ' + nf(y(v), 1); });
+    g.appendChild(el('path', { d: line, fill: 'none', stroke: '#00D3F6', 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+
+    var dl = '';
+    del.forEach(function (v, i) { dl += (i ? ' L' : 'M') + nf(x(i), 1) + ' ' + nf(y2(v), 1); });
+    g.appendChild(el('path', { d: dl, fill: 'none', stroke: '#FE019A', 'stroke-width': 1.8, 'stroke-dasharray': '5 4', 'stroke-linecap': 'round' }));
+
+    if (!narrow) {
+      [0, 1, 2].forEach(function (k) {
+        var v = dmax - (dmax - dmin) * k / 2;
+        g.appendChild(el('text', { x: padL + plotW + 8, y: y2(v) + 3.5, fill: '#64748B', 'font-size': 10.5 }, nf(v, 0) + '%'));
+      });
+    }
+
+    var lastX = x(data.length - 1), lastY = y(data[data.length - 1]);
+    g.appendChild(el('circle', { cx: lastX, cy: lastY, r: 3.4, fill: '#00D3F6' }));
+    g.appendChild(el('text', {
+      x: Math.min(lastX, padL + plotW), y: lastY - 9, 'text-anchor': 'end',
+      fill: '#E2E8F4', 'font-size': 11, 'font-weight': 500
+    }, fmt(data[data.length - 1])));
+    var ly2 = y2(del[del.length - 1]);
+    g.appendChild(el('circle', { cx: lastX, cy: ly2, r: 3, fill: '#FE019A' }));
+    g.appendChild(el('text', {
+      x: Math.min(lastX, padL + plotW), y: Math.max(ly2 + 15, padT + 11), 'text-anchor': 'end',
+      fill: '#FE019A', 'font-size': 11
+    }, nf(del[del.length - 1], 1) + '%'));
+
+    var step = Math.max(1, Math.ceil(labels.length / (narrow ? 4 : 5)));
+    labels.forEach(function (lb, i) {
+      if (i % step !== 0 && i !== labels.length - 1) return;
+      g.appendChild(el('text', {
+        x: Math.min(Math.max(x(i), padL + 10), padL + plotW - 10), y: h - 7,
+        'text-anchor': i === labels.length - 1 ? 'end' : 'middle', fill: '#64748B', 'font-size': 10.5
+      }, lb));
+    });
+    svg.appendChild(g);
+  }
+
+  function drawDist(svg, bins) {
+    var w = svg.clientWidth || 320, h = svg.clientHeight || 186;
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    clear(svg);
+    var padL = 34, padR = 8, padT = 24, padB = 24;
+    var plotW = Math.max(40, w - padL - padR), plotH = Math.max(40, h - padT - padB);
+    var maxV = Math.max.apply(null, bins.map(function (b) { return b[1]; })) * 1.18;
+    var peak = bins.reduce(function (a, b, i) { return b[1] > bins[a][1] ? i : a; }, 0);
+    var slot = plotW / bins.length, bw = Math.min(38, slot * 0.56);
+    var g = el('g');
+    [0, 1, 2].forEach(function (k) {
+      var vy = padT + plotH * k / 2;
+      g.appendChild(el('line', { x1: padL, y1: vy, x2: padL + plotW, y2: vy, stroke: 'rgba(148,163,184,0.14)' }));
+      g.appendChild(el('text', { x: padL - 7, y: vy + 3.5, 'text-anchor': 'end', fill: '#64748B', 'font-size': 10.5 }, nf(maxV * (1 - k / 2), 0)));
+    });
+    bins.forEach(function (b, i) {
+      var bh = Math.max(3, plotH * b[1] / maxV);
+      var bx = padL + slot * i + (slot - bw) / 2, by = padT + plotH - bh;
+      g.appendChild(el('rect', {
+        x: nf(bx, 1), y: nf(by, 1), width: nf(bw, 1), height: nf(bh, 1), rx: 4,
+        fill: i === peak ? '#FE019A' : '#00D3F6', 'fill-opacity': i === peak ? 0.92 : 0.62
+      }));
+      g.appendChild(el('text', { x: nf(bx + bw / 2, 1), y: nf(by - 6, 1), 'text-anchor': 'middle', fill: '#E2E8F4', 'font-size': 10.5 }, fmt(b[1])));
+      g.appendChild(el('text', { x: nf(padL + slot * i + slot / 2, 1), y: h - 7, 'text-anchor': 'middle', fill: '#64748B', 'font-size': 10.5 }, b[0]));
+    });
+    svg.appendChild(g);
+  }
+
+  function drawDonut(svg, rows, total) {
+    var w = svg.clientWidth || 132, h = svg.clientHeight || 132;
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    clear(svg);
+    var cx = w / 2, cy = h / 2, r = Math.min(w, h) / 2 - 5, rin = r * 0.62;
+    var colors = ['#00D3F6', '#FE019A', '#B891D0', '#FEF810', 'rgba(148,163,184,0.55)'];
+    var top = rows.slice(0, 4), rest = rows.slice(4);
+    var segs = top.map(function (r) { return { n: r.n, v: r.a, c: colors[top.indexOf(r)] }; });
+    if (rest.length) segs.push({ n: '其他 ' + rest.length + ' 项', v: rest.reduce(function (a, r) { return a + r.a; }, 0), c: colors[4] });
+    var sum = segs.reduce(function (a, s) { return a + s.v; }, 0);
+    var g = el('g');
+    var a0 = -Math.PI / 2;
+    segs.forEach(function (s) {
+      var sweep = (s.v / sum) * Math.PI * 2, a1 = a0 + Math.max(sweep - 0.05, 0.005);
+      var large = (a1 - a0) > Math.PI ? 1 : 0;
+      var p = 'M' + nf(cx + r * Math.cos(a0), 2) + ' ' + nf(cy + r * Math.sin(a0), 2) +
+        ' A' + nf(r, 2) + ' ' + nf(r, 2) + ' 0 ' + large + ' 1 ' + nf(cx + r * Math.cos(a1), 2) + ' ' + nf(cy + r * Math.sin(a1), 2) +
+        ' L' + nf(cx + rin * Math.cos(a1), 2) + ' ' + nf(cy + rin * Math.sin(a1), 2) +
+        ' A' + nf(rin, 2) + ' ' + nf(rin, 2) + ' 0 ' + large + ' 0 ' + nf(cx + rin * Math.cos(a0), 2) + ' ' + nf(cy + rin * Math.sin(a0), 2) + ' Z';
+      g.appendChild(el('path', { d: p, fill: s.c }));
+      a0 += sweep;
+    });
+    g.appendChild(el('text', { x: cx, y: cy - 2, 'text-anchor': 'middle', fill: '#F1F5F9', 'font-size': 18, 'font-weight': 500 }, yi(total).replace(' 亿', '')));
+    g.appendChild(el('text', { x: cx, y: cy + 14, 'text-anchor': 'middle', fill: '#64748B', 'font-size': 10.5 }, '亿元成交'));
+    svg.appendChild(g);
+    return segs;
+  }
+
+  function drawRank(svg, rows) {
+    var w = svg.clientWidth || 320, h = svg.clientHeight || 186;
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    clear(svg);
+    var labelW = 78, valueW = 46, padR = 4, padT = 4;
+    var barX = labelW + 8, barArea = Math.max(30, w - barX - valueW - padR);
+    var rowH = Math.min(30, (h - padT * 2) / rows.length);
+    var bh = Math.max(9, rowH * 0.44);
+    var maxV = Math.max.apply(null, rows.map(function (r) { return r.s; }));
+    var g = el('g');
+    rows.forEach(function (r, i) {
+      var cy = padT + rowH * i + rowH / 2;
+      var y = cy - bh / 2;
+      var ok = r.rate >= 90;
+      g.appendChild(el('text', { x: labelW, y: cy + 3.5, 'text-anchor': 'end', fill: '#94A3B8', 'font-size': 11 }, r.n));
+      g.appendChild(el('rect', { x: barX, y: y, width: barArea, height: bh, rx: bh / 2, fill: 'rgba(148,163,184,0.13)' }));
+      g.appendChild(el('rect', {
+        x: barX, y: y, width: Math.max(2, barArea * r.s / maxV), height: bh, rx: bh / 2,
+        fill: ok ? '#00D3F6' : '#FFB020', 'fill-opacity': ok ? 0.82 : 0.9
+      }));
+      g.appendChild(el('text', { x: w - padR, y: cy + 3.5, 'text-anchor': 'end', fill: '#E2E8F4', 'font-size': 11 }, fmt(r.s)));
+    });
+    svg.appendChild(g);
+  }
+
+  /* ------------------------------------------------------------------ 渲染 */
+  var KPI_DEFS = [
+    { key: 'completion', name: '完成率', icon: 'target' },
+    { key: 'sales', icon: 'car', name: { month: '月销量', quarter: '季销量' } },
+    { key: 'amount', icon: 'cash', name: { month: '月成交金额', quarter: '季成交金额' } },
+    { key: 'delivery', name: '即时交付率', icon: 'truck' },
+    { key: 'stockout', icon: 'box', name: { month: '当月缺货次数', quarter: '当季缺货次数' } },
+    { key: 'complaints', icon: 'bell', name: { month: '当月客诉', quarter: '当季客诉' } }
+  ];
+  var ICONS = {
+    target: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/>',
+    car: '<path d="M4 15l1.6-4.4A2 2 0 017.5 9h9a2 2 0 011.9 1.6L20 15v4h-3v-2H7v2H4z"/><circle cx="7.5" cy="15" r="1"/>',
+    cash: '<rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.4"/>',
+    truck: '<path d="M3 7h10v9H3z"/><path d="M13 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/>',
+    box: '<path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4"/><path d="M12 12v8"/>',
+    bell: '<path d="M18 8a6 6 0 10-12 0c0 6-2 7-2 7h16s-2-1-2-7"/><path d="M10.5 20a2 2 0 003 0"/>'
+  };
+
+  function chipText(key, ratio) {
+    if (key === 'completion') return ratio >= 95 ? '达标' : ratio >= 90 ? '接近目标' : '未达标';
+    if (key === 'sales' || key === 'amount') return nf(ratio, 1) + '% 达成';
+    if (key === 'delivery') return ratio >= 100 ? '达标' : '低于目标';
+    if (key === 'stockout') return ratio <= 80 ? '在阈值内' : '超阈值';
+    if (key === 'complaints') return ratio <= 80 ? '在阈值内' : '接近阈值';
+    return '';
+  }
+
+  function renderKpis(d) {
+    var box = document.getElementById('bd-kpis');
+    clear(box);
+    KPI_DEFS.forEach(function (def) {
+      var k = def.key, hint = d.period.hint[k];
+      var value, sub, ratio, tone;
+      if (k === 'completion') {
+        value = nf(d.completion, 1) + '%'; sub = '目标 ' + fmt(d.target) + ' 台';
+        ratio = d.completion; tone = d.completion >= 95 ? '' : d.completion >= 90 ? 'warn' : 'risk';
+      } else if (k === 'sales') {
+        value = fmt(d.sales); sub = '目标 ' + fmt(d.target) + ' 台';
+        ratio = d.sales / d.target * 100; tone = ratio >= 95 ? '' : ratio >= 90 ? 'warn' : 'risk';
+      } else if (k === 'amount') {
+        value = yi(d.amount); sub = '目标 ' + yi(d.goalAmount);
+        ratio = d.amount / d.goalAmount * 100; tone = ratio >= 95 ? '' : ratio >= 90 ? 'warn' : 'risk';
+      } else if (k === 'delivery') {
+        value = nf(d.delivery, 1) + '%'; sub = '目标 ≥ 95%';
+        ratio = d.delivery / 95 * 100; tone = d.delivery >= 95 ? '' : d.delivery >= 93 ? 'warn' : 'risk';
+      } else if (k === 'stockout') {
+        value = fmt(d.stockout) + ' 次'; sub = '阈值 ≤ ' + d.limitStockout + ' 次';
+        ratio = d.stockout / d.limitStockout * 100; tone = ratio <= 80 ? '' : ratio <= 110 ? 'warn' : 'risk';
+      } else {
+        value = fmt(d.complaints) + ' 件'; sub = '阈值 ≤ ' + d.limitComplaints + ' 件';
+        ratio = d.complaints / d.limitComplaints * 100; tone = ratio <= 80 ? '' : ratio <= 110 ? 'warn' : 'risk';
+      }
+      var card = document.createElement('article');
+      card.className = 'bd-kpi';
+      var top = document.createElement('div');
+      top.className = 'bd-kpi-top';
+      var ic = document.createElement('span');
+      ic.className = 'bd-kpi-ic';
+      ic.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICONS[def.icon] + '</svg>';
+      var nm = document.createElement('span');
+      nm.className = 'bd-kpi-name';
+      nm.textContent = typeof def.name === 'string' ? def.name : def.name[state.period];
+      var chip = document.createElement('span');
+      chip.className = 'bd-chip ' + (tone === '' ? 'ok' : tone);
+      chip.textContent = chipText(k, ratio);
+      top.appendChild(ic); top.appendChild(nm); top.appendChild(chip);
+
+      var val = document.createElement('div');
+      val.className = 'bd-kpi-val';
+      var strong = document.createElement('strong');
+      strong.className = 'bd-num';
+      strong.textContent = value;
+      val.appendChild(strong);
+      var unit = (k === 'completion' || k === 'delivery') ? '' : (k === 'sales' ? ' 台' : (k === 'stockout' ? ' 次' : (k === 'complaints' ? ' 件' : '')));
+      if (unit) { var u = document.createElement('span'); u.textContent = unit.trim(); val.appendChild(u); }
+
+      var foot = document.createElement('div');
+      foot.className = 'bd-kpi-foot';
+      var hb = document.createElement('b');
+      hb.textContent = hint;
+      foot.appendChild(hb);
+      var sp = document.createElement('span');
+      sp.style.marginLeft = 'auto';
+      sp.textContent = sub;
+      foot.appendChild(sp);
+
+      var bar = document.createElement('div');
+      bar.className = 'bd-bar ' + tone;
+      bar.setAttribute('role', 'progressbar');
+      bar.setAttribute('aria-label', def.name + ' 达成情况');
+      var inner = document.createElement('i');
+      inner.style.width = Math.max(3, Math.min(100, ratio)) + '%';
+      bar.appendChild(inner);
+
+      card.appendChild(top); card.appendChild(val); card.appendChild(foot); card.appendChild(bar);
+      box.appendChild(card);
+    });
+  }
+
+  function renderTable(d) {
+    var head = document.getElementById('bd-thead');
+    var body = document.getElementById('bd-tbody');
+    var foot = document.getElementById('bd-tfoot');
+    clear(head); clear(body); clear(foot);
+    var cols = [state.dim, '销量（台）', '成交金额（万元）', '完成率', '即时交付率', '当月客诉', '当月缺货'];
+    cols.forEach(function (c, i) {
+      var th = document.createElement('th');
+      th.textContent = c;
+      if (i === 0) th.setAttribute('scope', 'row');
+      head.appendChild(th);
+    });
+    d.rows.forEach(function (r) {
+      var tr = document.createElement('tr');
+      [r.n, fmt(r.s), fmt(r.a), '', nf(r.d, 1) + '%', fmt(r.c), fmt(r.o)].forEach(function (v, i) {
+        var td = document.createElement('td');
+        if (i === 3) {
+          var wrap = document.createElement('div');
+          wrap.className = 'bd-cellrate';
+          var txt = document.createElement('span');
+          txt.textContent = nf(r.rate, 1) + '%';
+          var mini = document.createElement('span');
+          mini.className = 'bd-mini';
+          var mi = document.createElement('i');
+          var tone = r.rate >= 100 ? '#2FD98A' : r.rate >= 90 ? '#00D3F6' : '#FFB020';
+          mi.style.background = tone;
+          mi.style.width = Math.min(100, r.rate) + '%';
+          mini.appendChild(mi);
+          wrap.appendChild(txt); wrap.appendChild(mini);
+          td.appendChild(wrap);
+        } else {
+          td.textContent = v;
+          if (i > 0) td.className = 'bd-n';
+        }
+        tr.appendChild(td);
+      });
+      body.appendChild(tr);
+    });
+    var totalSales = d.rows.reduce(function (a, r) { return a + r.s; }, 0);
+    var totalAmount = d.rows.reduce(function (a, r) { return a + r.a; }, 0);
+    var totalC = d.rows.reduce(function (a, r) { return a + r.c; }, 0);
+    var totalO = d.rows.reduce(function (a, r) { return a + r.o; }, 0);
+    ['合计', fmt(totalSales), fmt(totalAmount), nf(d.completion, 1) + '%', nf(d.delivery, 1) + '%', fmt(totalC), fmt(totalO)]
+      .forEach(function (v) {
+        var td = document.createElement('td');
+        td.textContent = v;
+        foot.appendChild(td);
+      });
+  }
+
+  function renderDonut(d) {
+    var svg = document.getElementById('bd-donut');
+    var segs = drawDonut(svg, d.rows, d.amount);
+    var ul = document.getElementById('bd-donut-legend');
+    clear(ul);
+    segs.forEach(function (s) {
+      var li = document.createElement('li');
+      var sw = document.createElement('i');
+      sw.style.background = s.c;
+      var name = document.createElement('span');
+      name.textContent = s.n;
+      var val = document.createElement('em');
+      val.textContent = fmt(s.v);
+      var pct = document.createElement('u');
+      pct.textContent = nf(s.v / d.amount * 100, 1) + '%';
+      li.appendChild(sw); li.appendChild(name); li.appendChild(val); li.appendChild(pct);
+      ul.appendChild(li);
+    });
+  }
+
+  function render() {
+    var d = kpisFor(state.dim, state.period);
+    renderKpis(d);
+    document.getElementById('bd-scope').textContent =
+      '全集团 · ' + d.period.scope + ' · 分析维度：' + state.dim + ' · 数据截止 2026-09-13 23:59';
+    document.getElementById('bd-trend-title').textContent = d.period.axis + '销量与交付率趋势';
+    document.getElementById('bd-dist-title').textContent = '成交价区间分布（' + d.period.scope + '）';
+    document.getElementById('bd-donut-title').textContent = '成交金额占比 · 按' + state.dim;
+    document.getElementById('bd-rank-title').textContent = '销量排行 · 按' + state.dim;
+    drawTrend(document.getElementById('bd-trend'));
+    var bins = PRICE_BINS.map(function (b) { return [b[0], Math.round(b[1] * d.period.factor)]; });
+    var binSum = bins.reduce(function (a, b) { return a + b[1]; }, 0);
+    if (binSum !== d.sales) {
+      var bi = 0;
+      bins.forEach(function (b, i) { if (b[1] > bins[bi][1]) bi = i; });
+      bins[bi][1] += d.sales - binSum;
+    }
+    drawDist(document.getElementById('bd-dist'), bins);
+    renderDonut(d);
+    drawRank(document.getElementById('bd-rank'), d.rows);
+    renderTable(d);
+  }
+
+  /* ------------------------------------------------------------------ 交互 */
+  root.querySelectorAll('[data-period]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      state.period = btn.getAttribute('data-period');
+      root.querySelectorAll('[data-period]').forEach(function (b) {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      render();
+    });
+  });
+  root.querySelectorAll('[data-dim]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      state.dim = btn.getAttribute('data-dim');
+      root.querySelectorAll('[data-dim]').forEach(function (b) {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      render();
+    });
+  });
+  var reset = document.getElementById('bd-reset');
+  if (reset) {
+    reset.addEventListener('click', function () {
+      state.period = 'month'; state.dim = '地区';
+      root.querySelectorAll('[data-period]').forEach(function (b) {
+        b.setAttribute('aria-pressed', b.getAttribute('data-period') === 'month' ? 'true' : 'false');
+      });
+      root.querySelectorAll('[data-dim]').forEach(function (b) {
+        b.setAttribute('aria-pressed', b.getAttribute('data-dim') === '地区' ? 'true' : 'false');
+      });
+      render();
+    });
+  }
+
+  if (window.ResizeObserver) {
+    var raf = 0;
+    var ro = new ResizeObserver(function () {
+      if (raf) return;
+      raf = window.requestAnimationFrame(function () { raf = 0; render(); });
+    });
+    ['bd-trend', 'bd-dist', 'bd-donut', 'bd-rank'].forEach(function (id) {
+      var svg = document.getElementById(id);
+      if (svg) ro.observe(svg);
+    });
+  }
+  render();
+})();
+</script>
+</div>
+
+</body></html>
